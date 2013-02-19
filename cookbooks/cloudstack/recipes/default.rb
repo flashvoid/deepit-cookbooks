@@ -110,7 +110,7 @@ end
 bash "install_sys_templates" do
 	user "root"
 	cwd "/tmp"
-	not_if "test -d /exports/secondary/templates"
+	not_if "test -d /exports/secondary/template"
 	code <<-EOH
 		#{node["cloudstack"]["template_installer"]} -m /exports/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -F	
 		#{node["cloudstack"]["template_installer"]} -m /exports/secondary -u http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova -h vmware -F	
