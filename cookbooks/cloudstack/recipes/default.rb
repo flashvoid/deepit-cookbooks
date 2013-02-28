@@ -118,6 +118,6 @@ bash "install_sys_templates" do
 	EOH
 end
 
-service "cloud_management" do
+service "cloud-management" do
 	action :start
 end
