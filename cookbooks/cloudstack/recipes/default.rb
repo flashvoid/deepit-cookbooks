@@ -8,13 +8,13 @@
 #
 
 
-bash "set_hostname" do
-	user "root"
-	cwd  "/tmp"
-	code <<-EOH
-		hostname #{node["cloudstack"]["mgmt_fqdn"]}
-	EOH
-end
+#bash "set_hostname" do
+#	user "root"
+#	cwd  "/tmp"
+#	code <<-EOH
+#		hostname #{node["cloudstack"]["mgmt_fqdn"]}
+#	EOH
+#end
 
 package "#{node["cloudstack"]["ntp_package"]}" do
 	action :install
