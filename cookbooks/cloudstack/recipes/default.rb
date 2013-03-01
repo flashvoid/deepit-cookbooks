@@ -7,6 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
+Defaults:cloud !requiretty
+
+bash "cloud_sudo" do
+	user "root"
+	cwd  "/tmp"
+	not_if "grep Defaults:cloud /etc/sudoers"
+	code <<-EOH
+		echo Defaults:cloud !requiretty >> /etc/sudoers
+	EOH
+end
 
 #bash "set_hostname" do
 #	user "root"
