@@ -7,12 +7,32 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
+
 bash "cloud_sudo" do
+	user "root"
+	cwd  "/tmp"
+	only_if "grep ^Defaults.*visiblepw /etc/sudoers"
+	code <<-EOH
+		sed -i 's/^Defaults.*visiblepw//' /etc/sudoers
+	EOH
+end
+
+bash "cloud_sudo2" do
 	user "root"
 	cwd  "/tmp"
 	not_if "grep Defaults:cloud /etc/sudoers"
 	code <<-EOH
 		echo 'Defaults:cloud !requiretty' >> /etc/sudoers
+	EOH
+end
+
+bash "cloud_sudo3" do
+	user "root"
+	cwd  "/tmp"
+	not_if "grep ^cloud.*NOPASSWD /etc/sudoers"
+	code <<-EOH
+		echo 'cloud  ALL=(ALL)       NOPASSWD: ALL' >> /etc/sudoers
 	EOH
 end
 
